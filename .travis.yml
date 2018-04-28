@@ -16,7 +16,6 @@ env:
     - GOARCH=amd64
 
 before_install:
-  - sudo cp ./docker-compose.skeleton.yml ./test/docker-compose.yml
   - sudo chmod +x ./tests/docker_tests.sh
   - sudo chmod +x ./tests/docker_run.sh
   - sudo apt-get update
