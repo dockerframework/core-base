@@ -17,7 +17,7 @@ env:
 
 before_install:
   - sudo chmod +x ./tests/docker_tests.sh
-  - sudo chmod +x ./tests/run.sh
+  - sudo chmod +x ./tests/docker_run.sh
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
@@ -26,4 +26,4 @@ before_install:
 
 script:
   - ./tests/docker_tests.sh
-  - ./tests/run.sh
+  - ./tests/docker_run.sh
