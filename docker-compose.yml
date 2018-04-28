@@ -5,7 +5,8 @@ services:
 #================================================================================================
 # CORE-BASE
 #================================================================================================
-  core-base:
+  base:
+    image: dockerframework/core-base
     volumes:
       - /etc/localtime:/etc/localtime:ro
     environment:
