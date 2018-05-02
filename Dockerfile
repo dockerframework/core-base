@@ -33,7 +33,7 @@ RUN apk update && \
     apk upgrade && \
     apk add bash bind-tools ca-certificates curl jq tar && \
     curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / && \
-    apk del tar && \
+    # apk del tar && \
     rm -rf /var/cache/apk/*
 
 COPY rootfs /
