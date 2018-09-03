@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER_IMAGE="dockerframework/core-base"
-DOCKER_TAG="3.7"
+DOCKER_TAG="3.8"
 
 #### Halt script on error
 set -e
