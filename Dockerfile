@@ -22,24 +22,59 @@ FROM ubuntu:${UBUNTU_VERSION}
 
 MAINTAINER "Laradock Team <mahmoud@zalt.me>"
 
-ENV S6OVERLAY_VERSION=v1.21.4.0 \
+ENV S6_OVERLAY=v1.21.4.0 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=1 \
     LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     TERM=xterm
 
-RUN apt-get update -y && \
-    apt-get dist-upgrade -y && \
-    apt-get install -y zip unzip curl build-essential bash-completion nano zsh mc
+RUN apt-get update -y
+
+#-----------------------------------------------------------------------------
+# Install Core Packages
+#-----------------------------------------------------------------------------
+RUN apt-get install -y util-linux \
+            bsdutils \
+            bash \
+            bash-completion \
+            initscripts \
+            locales
+
+RUN locale-gen en_US.UTF-8
+
+#-----------------------------------------------------------------------------
+# Update & Install Base Dependency
+#-----------------------------------------------------------------------------
+RUN apt-get install -y iproute \
+            htop \
+            curl \
+            wget \
+            tar \
+            sudo \
+            nano \
+            zip \
+            unzip \
+            screen \
+            lsof \
+            tcpdump \
+            iptraf
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY}/s6-overlay-amd64.tar.gz /tmp/
 RUN tar zxvf /tmp/s6-overlay-amd64.tar.gz -C /
 RUN rm -f /tmp/s6-overlay-amd64.tar.gz
 
-RUN apt-get clean
+#-----------------------------------------------------------------------------
+# Clean Up All Cache
+#-----------------------------------------------------------------------------
+RUN apt-get clean all
 
-COPY rootfs /
+#-----------------------------------------------------------------------------
+# Finalize (reconfigure)
+#-----------------------------------------------------------------------------
+COPY rootfs/ /
 
-ENTRYPOINT ["/init"]
-CMD ["bash"]
+#-----------------------------------------------------------------------------
+# Expose Port
+#-----------------------------------------------------------------------------
+EXPOSE 22

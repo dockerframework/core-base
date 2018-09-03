@@ -6,7 +6,10 @@ services:
 # CORE-BASE
 #================================================================================================
   base:
-    image: dockerframework/core-base:16.04-ubuntu
+    restart: unless-stopped
+    build:
+      context: .
+    # image: dockerframework/core-base:16.04-ubuntu
     volumes:
       - /etc/localtime:/etc/localtime:ro
     environment:
