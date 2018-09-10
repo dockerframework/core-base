@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-    # image: dockerframework/core-base:ubuntu
+    # image: dockerframework/core-base:ubuntu-16.04
     volumes:
       - /etc/localtime:/etc/localtime:ro
     environment:
