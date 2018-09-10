@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER_IMAGE="dockerframework/core-base"
-DOCKER_TAG="16.04-ubuntu"
+DOCKER_TAG="ubuntu"
 
 #### Halt script on error
 set -e
